@@ -29,16 +29,9 @@ for(i in 1:ncol(data.set)){
 }
 data.set[, 36] <- as.character(data.set[, 36])
 
-# Clean missing data by replacing missing values with the mean
-for(i in 1:ncol(data.set)){
-  if (i!=36) {
-    data.set[is.na(data.set[,i]), i] <- mean(data.set[,i], na.rm = TRUE)
-  }
-}
-
 data.set$combined_label <- as.factor(data.set$combined_label)
 
-# Some more data cleaning for the religion column which is a character column
+# Cleaning missing data - replace NAs and empty characters
 data.set[is.na(data.set)] <- 0
 data.set[data.set$religion=="", "religion"] <- "0"
 data.set$religion <- factor(data.set$religion)
